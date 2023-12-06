@@ -28,7 +28,8 @@ import ProjectCard from './partials/ProjectCard.vue';
         v-for="project in store.projects" :key="project.id"
         :name = "project.name"
         :description = "project.description"
-  
+        :type = "project.type?.name"
+        :tech = "project.technologies"
         /> 
   </div>
 </template>
