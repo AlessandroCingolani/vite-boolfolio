@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color:  rgb(219, 219, 221);
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: greenyellow;
+  max-width: 1400px;
+  margin: 50px auto;
+  height: 90%;
+  overflow: auto;
+}
