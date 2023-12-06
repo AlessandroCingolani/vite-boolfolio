@@ -4,16 +4,19 @@ import axios from 'axios';
 import { store } from './data/store';
 import ProjectsContainer from './components/ProjectsContainer.vue';
 import Loader from './components/partials/Loader.vue';
+import Paginator from './components/partials/Paginator.vue';
 
 export default {
   name:'App',
   components:{
     ProjectsContainer,
-    Loader
+    Loader,
+    Paginator
   },
   data(){
     return {
       isLoading: false,
+      links:[]
     }
   },
   methods: {
@@ -21,7 +24,8 @@ export default {
       axios.get(store.apiUrl + 'projects')
       .then(results => {
           this.isLoading = true;
-          store.projects = results.data;
+          store.projects = results.data.data;
+          this.links = results.data.links;
         })
       .catch(error => {
           console.log(error);
@@ -39,6 +43,7 @@ export default {
     <Loader v-if="!isLoading" />
     <div v-else  class="projects-container">
       <ProjectsContainer />
+      <Paginator :links="links" />
     </div>
   </div>
 </template>
