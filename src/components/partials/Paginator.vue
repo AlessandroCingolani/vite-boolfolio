@@ -4,6 +4,11 @@ export default {
   props: {
     links:Array
   },
+  methods: {
+    callApi(linkUrl){
+      this.$emit('callApi',linkUrl)
+    }
+  },
 }
 </script>
 
@@ -11,7 +16,7 @@ export default {
 <template>
   <div class="nav-btn">
 
-    <button v-for="link in links" :key="link.label" v-html="link.label" :disabled="link.active || !link.url"></button>
+    <button @click="callApi(link.url)" v-for="link in links" :key="link.label" v-html="link.label" :disabled="link.active || !link.url"></button>
   </div>
 </template>
 
