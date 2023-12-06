@@ -1,7 +1,11 @@
 <script>
 import {store} from '../data/store';
+import ProjectCard from './partials/ProjectCard.vue';
   export default {
-    name: 'ProjectsComponent',
+    name: 'ProjectsContainer',
+    components: {
+      ProjectCard
+    },
     data() {
       return {
         store
@@ -17,9 +21,14 @@ import {store} from '../data/store';
 
 <template>
   <h1>Projects</h1>
-  <div class="projects-list" v-for="(project, index) in store.projects" :key="project.id">
-      <h3>{{ index +1 }} {{project.name}}</h3>
-      <p v-html="project.description"></p>
+  <div class="project-list">
+
+    <ProjectCard
+        v-for="project in store.projects" :key="project.id"
+        :name = "project.name"
+        :description = "project.description"
+  
+        />
   </div>
 </template>
 
@@ -32,8 +41,6 @@ h1 {
 }
 .projects-list {
   padding: 10px;
-  margin: 15px 0;
-  border: 1px solid black;
-  border-radius: 5px;
+ 
 }
 </style>
