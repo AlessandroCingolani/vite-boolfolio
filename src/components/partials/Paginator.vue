@@ -2,7 +2,7 @@
 export default {
   name:'Paginator',
   props: {
-    links:Array
+    paginator:Object
   },
   methods: {
     callApi(linkUrl){
@@ -16,8 +16,14 @@ export default {
 <template>
   <div class="nav-btn">
 
-    <button @click="callApi(link.url)" v-for="link in links" :key="link.label" v-html="link.label" :disabled="link.active || !link.url"></button>
+    <button @click="callApi(paginator.firstPage)" :disabled="paginator.currentPage === 1"><i class="fa-solid fa-backward-step"></i></button>
+
+    <button @click="callApi(link.url)" v-for="link in paginator.links" :key="link.label" v-html="link.label" :disabled="link.active || !link.url"></button>
+ 
+ 
+    <button @click="callApi(paginator.lastPageUrl)" :disabled="paginator.currentPage === paginator.lastPage"><i class="fa-solid fa-forward-step"></i></button>
   </div>
+
 </template>
 
 
