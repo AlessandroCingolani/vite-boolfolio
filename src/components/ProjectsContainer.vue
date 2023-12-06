@@ -1,10 +1,12 @@
 <script>
 import {store} from '../data/store';
 import ProjectCard from './partials/ProjectCard.vue';
+
   export default {
     name: 'ProjectsContainer',
     components: {
-      ProjectCard
+      ProjectCard,
+      
     },
     data() {
       return {
@@ -22,13 +24,12 @@ import ProjectCard from './partials/ProjectCard.vue';
 <template>
   <h1>Projects</h1>
   <div class="project-list">
-
     <ProjectCard
         v-for="project in store.projects" :key="project.id"
         :name = "project.name"
         :description = "project.description"
   
-        />
+        /> 
   </div>
 </template>
 
