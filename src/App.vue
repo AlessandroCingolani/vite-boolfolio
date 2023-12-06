@@ -16,7 +16,13 @@ export default {
   data(){
     return {
       isLoading: false,
-      links:[]
+      paginator:{
+        links:[],
+        firstPage:'',
+        lastPageUrl:'',
+        lastPage:'',
+        currentPage:''
+      }
     }
   },
   methods: {
@@ -25,7 +31,11 @@ export default {
       .then(results => {
           this.isLoading = true;
           store.projects = results.data.data;
-          this.links = results.data.links;
+          this.paginator.links = results.data.links;
+          this.paginator.firstPage = results.data.first_page_url;
+          this.paginator.lastPageUrl = results.data.last_page_url;
+          this.paginator.lastPage = results.data.last_page;
+          this.paginator.currentPage = results.data.current_page;
         })
       .catch(error => {
           console.log(error);
@@ -43,7 +53,7 @@ export default {
     <Loader v-if="!isLoading" />
     <div v-else  class="projects-container">
       <ProjectsContainer />
-      <Paginator :links="links" @callApi="getApi" />
+      <Paginator :paginator="paginator" @callApi="getApi" />
     </div>
   </div>
 </template>
