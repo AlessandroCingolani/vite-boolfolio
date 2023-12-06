@@ -20,8 +20,8 @@ export default {
     }
   },
   methods: {
-    getApi(){
-      axios.get(store.apiUrl + 'projects')
+    getApi(endpoint){
+      axios.get(endpoint)
       .then(results => {
           this.isLoading = true;
           store.projects = results.data.data;
@@ -33,7 +33,7 @@ export default {
     }
   },
   mounted(){
-    this.getApi();
+    this.getApi(store.apiUrl + 'projects');
   }
 }
 </script>
@@ -43,7 +43,7 @@ export default {
     <Loader v-if="!isLoading" />
     <div v-else  class="projects-container">
       <ProjectsContainer />
-      <Paginator :links="links" />
+      <Paginator :links="links" @callApi="getApi" />
     </div>
   </div>
 </template>
