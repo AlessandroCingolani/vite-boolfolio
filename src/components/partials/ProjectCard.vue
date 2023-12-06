@@ -19,7 +19,7 @@ export default {
           <h3>{{name}}</h3>
           <p v-html="description"></p>
           <strong>{{ type }}</strong>
-          <p v-for="technology in tech" :key="technology.id">{{ technology.name }}</p>
+          <span v-for="technology in tech" :key="technology.id">{{ technology.name }}</span>
         </li>
       </ul>
     </div>
@@ -31,7 +31,17 @@ export default {
 
 .my_card {
   ul {
-    list-style:square
+    list-style:square;
+    strong {
+      font-size: 1.2rem;
+      color: green;
+      margin-right: 10px;
+    }
+    span {
+      color: blue;
+      margin: 0 5px;
+      font-weight: bolder;
+    }
   }
   margin: 15px 0;
  
