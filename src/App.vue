@@ -2,13 +2,13 @@
 
 import axios from 'axios';
 import { store } from './data/store';
-import ProjectCard from './components/ProjectCard.vue';
+import ProjectsContainer from './components/ProjectsContainer.vue';
 import Loader from './components/partials/Loader.vue';
 
 export default {
   name:'App',
   components:{
-    ProjectCard,
+    ProjectsContainer,
     Loader
   },
   data(){
@@ -38,7 +38,7 @@ export default {
   <div class="container">
     <Loader v-if="!isLoading" />
     <div v-else  class="projects-container">
-      <ProjectCard />
+      <ProjectsContainer />
     </div>
   </div>
 </template>
