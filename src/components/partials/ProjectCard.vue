@@ -1,6 +1,6 @@
 <script>
 export default {
-  name:'Cards',
+  name:'ProjectCard',
   props:{
     name: String,
     description: String
