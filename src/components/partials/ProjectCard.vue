@@ -3,8 +3,11 @@ export default {
   name:'ProjectCard',
   props:{
     name: String,
-    description: String
-  }
+    description: String,
+    type: String,
+    tech: Array
+  },
+
 }
 </script>
 
@@ -15,6 +18,8 @@ export default {
         <li>
           <h3>{{name}}</h3>
           <p v-html="description"></p>
+          <strong>{{ type }}</strong>
+          <p v-for="technology in tech" :key="technology.id">{{ technology.name }}</p>
         </li>
       </ul>
     </div>
