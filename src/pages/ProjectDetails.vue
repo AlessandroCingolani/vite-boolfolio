@@ -2,19 +2,27 @@
   <script>
   import { store } from '../data/store';
   import axios  from 'axios';
+  import Loader from '../components/partials/Loader.vue';
   export default {
     name:'ProjectDetails',
+    components: {
+      Loader
+    },
 
     data(){
       return {
-        slug:''
+        slug:'', 
+        isLoading: false,
+        project:{},
+
       }
     },
     methods: {
       getSingleProject(slug){
         axios.get(store.apiUrl + 'projects/get-project/' + slug)
       .then(response => {
-          console.log(response.data);
+        this.isLoading = true;
+         this.project = response.data;
         })}
 
     },
@@ -28,8 +36,9 @@
 
 
 <template>
-  <div class="project-card">
-    <h2>Title project</h2>
+  <Loader v-if="!isLoading" />
+  <div v-else class="project-card">
+    <h2>Title project: {{ project.name }} </h2>
     <p>Type name</p>
     <p>Tech</p>
     <img src="" alt="">
