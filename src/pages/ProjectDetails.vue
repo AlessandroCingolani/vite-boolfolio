@@ -1,7 +1,28 @@
   
   <script>
+  import { store } from '../data/store';
+  import axios  from 'axios';
   export default {
     name:'ProjectDetails',
+
+    data(){
+      return {
+        slug:''
+      }
+    },
+    methods: {
+      getSingleProject(slug){
+        axios.get(store.apiUrl + 'projects/get-project/' + slug)
+      .then(response => {
+          console.log(response.data);
+        })}
+
+    },
+
+    mounted(){
+      this.slug = this.$route.params.slug;
+      this.getSingleProject(this.slug);
+    }
   }
   </script>
 
