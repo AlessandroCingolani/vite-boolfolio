@@ -1,11 +1,14 @@
 <script>
+import ProjectDetails from '@/pages/ProjectDetails.vue';
+
 export default {
   name:'ProjectCard',
   props:{
     name: String,
     description: String,
     type: String,
-    tech: Array
+    tech: Array,
+    slug: String,
   },
 
 }
@@ -16,7 +19,7 @@ export default {
     <div class="my_card">
       <ul>
         <li>
-          <h3>{{name}}</h3>
+          <router-link :to="{name:'ProjectDetails',params:{slug:slug}}">{{name}}</router-link>
           <p v-html="description"></p>
           <strong>{{ type }}</strong>
           <span v-for="technology in tech" :key="technology.id">{{ technology.name }}</span>
