@@ -27,6 +27,12 @@
 
     },
 
+    computed: {
+      techList(){
+        return this.project.technologies.map(tech => tech.name).join(', ') || 'No technologies';
+      }
+    },
+
     mounted(){
       this.slug = this.$route.params.slug;
       this.getSingleProject(this.slug);
@@ -40,7 +46,7 @@
   <div v-else class="project-card">
     <h2>Title project: {{ project.name }} </h2>
     <p>Type: {{ project.type?.name ?? '-' }}</p>
-    <p>Tech</p>
+    <p>Tech: {{ techList }}</p>
     <img src="" alt="">
     <p>{{ project.start_date }}</p>
     <p>{{ project?.end_date ?? 'Work in progress' }}</p>
