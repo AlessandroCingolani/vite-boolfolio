@@ -65,9 +65,9 @@ export default {
   .projects-container {
     width: 100%;
     height: 100%;
-    background-color: aqua;
-    border: 1px solid black;
+    background-color: #d2c8c8;
     border-radius: 10px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     padding: 20px;
     overflow: auto;
   }
