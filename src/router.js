@@ -7,6 +7,8 @@ import Projects from './pages/Projects.vue';
 
 import Contacts from './pages/Contacts.vue';
 
+import ProjectDetails from './pages/ProjectDetails.vue';
+
 import Error404 from './pages/Error404.vue';
 
 const router = createRouter({
@@ -32,6 +34,12 @@ const router = createRouter({
       path: '/contacts',
       name: 'Contacts',
       component:Contacts
+    },
+
+    {
+      path: '/project-details',
+      name: 'ProjectDetails',
+      component:ProjectDetails
     },
 
     {
