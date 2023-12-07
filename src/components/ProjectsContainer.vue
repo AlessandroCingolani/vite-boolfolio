@@ -30,6 +30,7 @@ import ProjectCard from './partials/ProjectCard.vue';
         :description = "project.description"
         :type = "project.type?.name"
         :tech = "project.technologies"
+        :slug = "project.slug"
         /> 
   </div>
 </template>
