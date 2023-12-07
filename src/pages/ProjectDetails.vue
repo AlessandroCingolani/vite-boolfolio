@@ -39,11 +39,11 @@
   <Loader v-if="!isLoading" />
   <div v-else class="project-card">
     <h2>Title project: {{ project.name }} </h2>
-    <p>Type name</p>
+    <p>Type: {{ project.type?.name ?? '-' }}</p>
     <p>Tech</p>
     <img src="" alt="">
-    <p>Start date</p>
-    <p>End date</p>
+    <p>{{ project.start_date }}</p>
+    <p>{{ project?.end_date ?? 'Work in progress' }}</p>
   </div>
 </template>
 
