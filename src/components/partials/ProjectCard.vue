@@ -35,6 +35,18 @@ export default {
 .my_card {
   ul {
     list-style:square;
+    a {
+      text-decoration:none;
+      color:darkslateblue;
+      font-size: 1.3rem;
+      font-weight: bolder;
+      &:hover {
+        text-decoration:underline;
+      }
+    }
+    p{
+      color:rgba(0, 0, 0, 0.654);
+    }
     strong {
       font-size: 1.2rem;
       color: green;
