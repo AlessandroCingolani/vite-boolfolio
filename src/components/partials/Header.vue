@@ -28,7 +28,7 @@
   </header>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 header {
   position: fixed;
   left: 0;
@@ -43,13 +43,17 @@ header {
      list-style: none;
      li{
        display: inline-block;
-       height: 100%;
        margin: 0 10px;
+       padding-top: 20px;
        a{
         color: black;
         font-size: 1.3rem;
         height: 100%;
         text-decoration: none;
+        &:hover{
+          color: white;
+          text-decoration: underline;
+        }
         &.active{
           color: green;
         }
