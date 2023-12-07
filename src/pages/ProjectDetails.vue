@@ -45,11 +45,13 @@
   <Loader v-if="!isLoading" />
   <div v-else class="project-card">
     <h2>Title project: {{ project.name }} </h2>
-    <p>Type: {{ project.type?.name ?? '-' }}</p>
-    <p>Tech: {{ techList }}</p>
+    <p><strong>Type:</strong> {{ project.type?.name ?? '-' }}</p>
+    <p><strong>Tech:</strong> {{ techList }}</p>
     <img src="" alt="">
-    <p>{{ project.start_date }}</p>
-    <p>{{ project?.end_date ?? 'Work in progress' }}</p>
+    <p><strong>Start date: </strong>{{ project.start_date }}</p>
+    <p><strong>End date: </strong>{{ project?.end_date ?? 'Work in progress' }}</p>
+    <strong>Description:</strong> 
+    <p v-html="project.description "></p>
   </div>
 </template>
 
@@ -61,6 +63,12 @@
     background-color: #d2c8c8;
     border-radius: 10px;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    h2 {
+      margin-bottom: 20px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
   }
 
 </style>
