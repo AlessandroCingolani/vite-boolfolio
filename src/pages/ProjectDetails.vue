@@ -30,6 +30,14 @@
     computed: {
       techList(){
         return this.project.technologies.map(tech => tech.name).join(', ') || 'No technologies';
+      },
+
+      formattData(){
+        let date = new Date(this.project.start_date);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        date = new Intl.DateTimeFormat(navigator.language,options).format(date);
+        console.log(date);
+        return date;
       }
     },
 
@@ -48,7 +56,7 @@
     <p><strong>Type:</strong> {{ project.type?.name ?? '-' }}</p>
     <p><strong>Tech:</strong> {{ techList }}</p>
     <img src="" alt="">
-    <p><strong>Start date: </strong>{{ project.start_date }}</p>
+    <p><strong>Start date: </strong>{{ formattData }}</p>
     <p><strong>End date: </strong>{{ project?.end_date ?? 'Work in progress' }}</p>
     <strong>Description:</strong> 
     <p v-html="project.description "></p>
