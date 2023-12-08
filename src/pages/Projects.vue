@@ -27,6 +27,7 @@ export default {
   },
   methods: {
     getApi(endpoint){
+      this.isLoading = false;
       axios.get(endpoint)
       .then(results => {
           this.isLoading = true;

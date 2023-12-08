@@ -19,6 +19,7 @@
     },
     methods: {
       getSingleProject(slug){
+        this.isLoading = false;
         axios.get(store.apiUrl + 'projects/get-project/' + slug)
       .then(response => {
         if(!response.data.success){
