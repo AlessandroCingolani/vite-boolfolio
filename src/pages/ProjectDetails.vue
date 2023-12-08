@@ -28,22 +28,24 @@
         this.isLoading = true;
         this.project = response.data.project;
         
-        })}
+        })},
+        formattData(data){
+          if(data){
+            let d = new Date(data);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            d = new Intl.DateTimeFormat(navigator.language,options).format(d);
+            console.log(d);
+            return d;
+          }
+      }
 
     },
-
     computed: {
       techList(){
         return this.project.technologies.map(tech => tech.name).join(', ') || 'No technologies';
       },
 
-      formattData(){
-        let date = new Date(this.project.start_date);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        date = new Intl.DateTimeFormat(navigator.language,options).format(date);
-        console.log(date);
-        return date;
-      }
+     
     },
 
     mounted(){
@@ -61,8 +63,8 @@
     <p><strong>Type:</strong> {{ project.type?.name ?? '-' }}</p>
     <p><strong>Tech:</strong> {{ techList }}</p>
     <img src="" alt="">
-    <p><strong>Start date: </strong>{{ formattData }}</p>
-    <p><strong>End date: </strong>{{ project?.end_date ?? 'Work in progress' }}</p>
+    <p><strong>Start date: </strong>{{ formattData(project.start_date) }}</p>
+    <p><strong>End date: </strong>{{ formattData(project.end_date) || 'Work in progress' }}</p>
     <strong>Description:</strong> 
     <p v-html="project.description "></p>
   </div>
