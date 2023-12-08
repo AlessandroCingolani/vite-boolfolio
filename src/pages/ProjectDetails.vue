@@ -21,11 +21,11 @@
       getSingleProject(slug){
         axios.get(store.apiUrl + 'projects/get-project/' + slug)
       .then(response => {
-        if(response.data.success){
-          this.isLoading = true;
-          this.project = response.data.project;
+        if(!response.data.success){
+          this.$router.push({ name: 'Error404' });
         }
-         this.$router.push({ name: 'Error404' });
+        this.isLoading = true;
+        this.project = response.data.project;
         
         })}
 
