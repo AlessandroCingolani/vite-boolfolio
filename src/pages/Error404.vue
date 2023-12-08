@@ -7,9 +7,19 @@
 
 
 <template>
-  <h1>ERROR</h1>
+  <div class="error-message">
+    <h1>ERROR PAGE NOT FOUND!</h1>
+  </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+  .error-message {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 100px;
+    color: red;
+    font-size: 2rem;
+  }
 
 </style>
