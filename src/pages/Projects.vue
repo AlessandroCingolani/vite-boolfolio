@@ -35,12 +35,12 @@ export default {
           switch(type){
             case 'types':
               store.types = results.data;
-              console.log(store.types);
+           
             break;
 
             case 'technologies':
               store.techs = results.data;
-              console.log(store.techs);
+             
             break;
             default:
               this.isLoading = true;
@@ -79,18 +79,23 @@ export default {
           <li
             v-for="tech in store.techs"
             :key="tech.id"
-          > {{ tech.name }} </li>
+          > <router-link :to="{name: 'projectsTechType', params:{slug: tech.slug, type:'technology'}}">{{ tech.name }}</router-link>  </li>
         </ul>
       </div>
+
       <div class="sm-card">
         <h3>Types</h3>
         <ul>
+          
           <li
             v-for="type in store.types"
             :key="type.id"
-          > {{ type.name }} </li>
+          > <router-link :to="{name: 'projectsTechType', params:{slug: type.slug, type:'type'}}">{{ type.name }}</router-link>  </li>
+
         </ul>
+
       </div>
+
     </aside>
   </div>
 </template>
@@ -104,7 +109,7 @@ export default {
     display: flex;
     aside {
       margin-left: 40px;
-      width: 10%;
+      width: 20%;
       .sm-card{
         background-color: rgb(210, 200, 200);
         text-align: center;
@@ -115,10 +120,16 @@ export default {
         h3 {
           margin-bottom: 10px;
         }
-        a {
-          text-decoration: none;
-          color: black;
+        li {
+          list-style: none;
           margin-bottom: 10px;
+          a {
+            text-decoration: none;
+            color: black;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
         }
       }
     }
