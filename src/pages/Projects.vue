@@ -15,6 +15,7 @@ export default {
   },
   data(){
     return {
+      store,
       isLoading: false,
       paginator:{
         links:[],
@@ -33,11 +34,13 @@ export default {
 
           switch(type){
             case 'types':
-              store.types = results.data.types;
+              store.types = results.data;
+              console.log(store.types);
             break;
 
             case 'technologies':
-              store.techs = results.data.technologies;
+              store.techs = results.data;
+              console.log(store.techs);
             break;
             default:
               this.isLoading = true;
@@ -56,8 +59,8 @@ export default {
   },
   mounted(){
     this.getApi(`${store.apiUrl}projects`);
-    this.getApi(`${store.apiUrl}types,'types'`);
-    this.getApi(`${store.apiUrl}technologies,'technologies'`);
+    this.getApi(`${store.apiUrl}types`,'types');
+    this.getApi(`${store.apiUrl}technologies`,'technologies');
   }
 }
 </script>
@@ -72,15 +75,21 @@ export default {
     <aside>
       <div class="sm-card">
         <h3>Techs</h3>
-        <p>ciao</p>
-        <p>ciao</p>
-        <p>ciao</p>
+        <ul>
+          <li
+            v-for="tech in store.techs"
+            :key="tech.id"
+          > {{ tech.name }} </li>
+        </ul>
       </div>
       <div class="sm-card">
         <h3>Types</h3>
-        <p>ciao</p>
-        <p>ciao</p>
-        <p>ciao</p>
+        <ul>
+          <li
+            v-for="type in store.types"
+            :key="type.id"
+          > {{ type.name }} </li>
+        </ul>
       </div>
     </aside>
   </div>
@@ -96,9 +105,6 @@ export default {
     aside {
       margin-left: 40px;
       width: 10%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       .sm-card{
         background-color: rgb(210, 200, 200);
         text-align: center;
@@ -106,6 +112,14 @@ export default {
         border-radius: 10px;
         padding: 30px;
         margin-bottom: 20px;
+        h3 {
+          margin-bottom: 10px;
+        }
+        a {
+          text-decoration: none;
+          color: black;
+          margin-bottom: 10px;
+        }
       }
     }
     .projects-container {
