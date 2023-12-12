@@ -18,7 +18,7 @@ export default {
 
 <template>  
   <Header/>
-<div class="container">
+<div class="main-container">
   <RouterView/>
 </div>
 </template>
@@ -26,5 +26,5 @@ export default {
 
 
 <style lang="scss"> 
-
+  
 </style>
