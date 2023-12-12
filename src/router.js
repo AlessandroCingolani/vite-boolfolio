@@ -9,6 +9,8 @@ import Contacts from './pages/Contacts.vue';
 
 import ProjectDetails from './pages/ProjectDetails.vue';
 
+import ProjectsTechType from './pages/ProjectsTechType.vue';
+
 import Error404 from './pages/Error404.vue';
 
 const router = createRouter({
@@ -40,6 +42,12 @@ const router = createRouter({
       path: '/get-project/:slug',
       name: 'ProjectDetails',
       component:ProjectDetails
+    },
+
+    {
+      path: '/projects-tech-type/:slug/:type',
+      name: 'projectsTechType',
+      component: ProjectsTechType
     },
 
     {
