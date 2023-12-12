@@ -2,6 +2,11 @@
   <script>
   export default {
     name:'Header',
+    data() {
+      return {
+        tosearch: ''
+      }
+    }
   }
   </script>
 
@@ -23,6 +28,11 @@
           <router-link :to="{name:'Contacts'}">Contacts</router-link>
         </li>
       </ul>
+      <input 
+      type="text" 
+      placeholder="Search project"
+      v-model="tosearch"
+      >
     </nav>
 
   </header>
@@ -36,8 +46,20 @@ header {
   height: 60px;
   background-color: rgba(0, 0, 0, 0.313) ;
  nav {
+  display: flex;
+  justify-content: center;
   height: 100%;
-  text-align: center;
+  align-items: center;
+  input {
+    margin-left: 20px;
+    width: 300px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    color: green;
+    font-size: 20px;
+    padding: 0 10px;
+  }
    ul{
      height: 100%;
      list-style: none;
