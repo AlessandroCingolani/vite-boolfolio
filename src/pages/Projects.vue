@@ -26,12 +26,12 @@ export default {
     }
   },
   methods: {
-    getApi(endpoint){
+    getApi(endpoint, type ='projects'){
       this.isLoading = false;
-      axios.get(store.apiUrl + endpoint)
+      axios.get(endpoint)
       .then(results => {
 
-          switch(endpoint){
+          switch(type){
             case 'types':
               store.types = results.data.types;
             break;
@@ -55,9 +55,9 @@ export default {
     }
   },
   mounted(){
-    this.getApi('projects');
-    this.getApi('technologies');
-    this.getApi('types');
+    this.getApi(`${store.apiUrl}projects`);
+    this.getApi(`${store.apiUrl}types,'types'`);
+    this.getApi(`${store.apiUrl}technologies,'technologies'`);
   }
 }
 </script>
@@ -69,6 +69,7 @@ export default {
       <ProjectsContainer />
       <Paginator :paginator="paginator" @callApi="getApi" />
     </div>
+    <div>ciao</div>
   </div>
 </template>
 
@@ -76,14 +77,18 @@ export default {
 
 <style lang="scss"> 
 
-  .projects-container {
-    width: 100%;
+  .container {
     height: 100%;
-    background-color: #d2c8c8;
-    border-radius: 10px;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    padding: 20px;
-    overflow: auto;
+    display: flex;
+    .projects-container {
+      width: 100%;
+      height: 90%;
+      background-color: #d2c8c8;
+      border-radius: 10px;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+      padding: 20px;
+      overflow: auto;
+    }
   }
 
 </style>
