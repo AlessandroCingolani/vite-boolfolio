@@ -28,15 +28,26 @@ export default {
   methods: {
     getApi(endpoint){
       this.isLoading = false;
-      axios.get(endpoint)
+      axios.get(store.apiUrl + endpoint)
       .then(results => {
-          this.isLoading = true;
-          store.projects = results.data.data;
-          this.paginator.links = results.data.links;
-          this.paginator.firstPage = results.data.first_page_url;
-          this.paginator.lastPageUrl = results.data.last_page_url;
-          this.paginator.lastPage = results.data.last_page;
-          this.paginator.currentPage = results.data.current_page;
+
+          switch(endpoint){
+            case 'types':
+              store.types = results.data.types;
+            break;
+
+            case 'technologies':
+              store.techs = results.data.technologies;
+            break;
+            default:
+              this.isLoading = true;
+              store.projects = results.data.data;
+              this.paginator.links = results.data.links;
+              this.paginator.firstPage = results.data.first_page_url;
+              this.paginator.lastPageUrl = results.data.last_page_url;
+              this.paginator.lastPage = results.data.last_page;
+              this.paginator.currentPage = results.data.current_page;
+          }
         })
       .catch(error => {
           console.log(error);
@@ -44,7 +55,9 @@ export default {
     }
   },
   mounted(){
-    this.getApi(store.apiUrl + 'projects');
+    this.getApi('projects');
+    this.getApi('technologies');
+    this.getApi('types');
   }
 }
 </script>
