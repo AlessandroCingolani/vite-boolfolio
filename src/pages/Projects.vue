@@ -69,7 +69,20 @@ export default {
       <ProjectsContainer />
       <Paginator :paginator="paginator" @callApi="getApi" />
     </div>
-    <div>ciao</div>
+    <aside>
+      <div class="sm-card">
+        <h3>Techs</h3>
+        <p>ciao</p>
+        <p>ciao</p>
+        <p>ciao</p>
+      </div>
+      <div class="sm-card">
+        <h3>Types</h3>
+        <p>ciao</p>
+        <p>ciao</p>
+        <p>ciao</p>
+      </div>
+    </aside>
   </div>
 </template>
 
@@ -80,8 +93,23 @@ export default {
   .container {
     height: 100%;
     display: flex;
+    aside {
+      margin-left: 40px;
+      width: 10%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .sm-card{
+        background-color: rgb(210, 200, 200);
+        text-align: center;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 20px;
+      }
+    }
     .projects-container {
-      width: 100%;
+      width: 90%;
       height: 90%;
       background-color: #d2c8c8;
       border-radius: 10px;
