@@ -6,4 +6,11 @@ export const store = reactive({
   projects: [],
   types: [],
   techs: [],
+  paginator:{
+    links:[],
+    firstPage:'',
+    lastPageUrl:'',
+    lastPage:'',
+    currentPage:''
+  }
 });
