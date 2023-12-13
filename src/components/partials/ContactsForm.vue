@@ -3,27 +3,39 @@
     name:'ContactsForm',
     data() {
       return{
-
+        name:'',
+        email:'',
+        message:''
      }
 
+    },
+    methods: {
+      sendForm(){
+        const data = {
+          name:this.name,
+          email:this.email,
+          message:this.message,
+        }
+        console.log(data);
+      }
     }
   }
   </script>
 
 
 <template>
- <form>
+ <form @submit.prevent="sendForm()">
     <div>
       <label for="name" ><strong>Name</strong> </label>
-      <input type="text" id="name" name="name" >
+      <input v-model="name" type="text" id="name" name="name" >
     </div>
     <div>
       <label for="email" ><strong>Email</strong> </label>
-      <input type="text" id="email" name="email" >
+      <input v-model="email" type="text" id="email" name="email" >
     </div>
     <div>
       <label for="message" ><strong>Message</strong> </label>
-      <textarea id="message" name="message" ></textarea>
+      <textarea v-model="message" id="message" name="message" ></textarea>
     </div>
     
     <button type="submit">Submit</button>
@@ -42,12 +54,14 @@
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     input {
       margin: 10px 0;
+      padding-left: 10px;
       display: block;
       width: 100%;
       height: 30px;
       border-radius: 10px;
     }
     textarea {
+      padding: 10px;
       display: block;
       height: 200px;
       width: 100%;
