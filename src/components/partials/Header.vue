@@ -1,10 +1,22 @@
-  
   <script>
+
+  import axios from "axios";
+
+  import { store } from "../../data/store";
+
   export default {
     name:'Header',
     data() {
       return {
         tosearch: ''
+      }
+    },
+    methods:{
+      getApi(){
+        axios.get(store.apiUrl + 'research/' + this.tosearch)
+        .then(response => {
+          console.log(response.data);
+        })
       }
     }
   }
@@ -32,6 +44,7 @@
       type="text" 
       placeholder="Search project"
       v-model="tosearch"
+      @keyup.enter="getApi"
       >
     </nav>
 
