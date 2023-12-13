@@ -33,15 +33,12 @@
           message:this.message,
         }
         
-        console.log(data);
         axios.post(store.apiUrl + 'send-email',data)
           .then(response => {
             this.isLoading = false;
-            console.log(response.data);
             this.success = response.data.success;
             if(!this.success){
               this.errors = response.data.errors
-
             }
           })
           .catch(error => {
