@@ -13,6 +13,18 @@
     },
     methods:{
       getApi(){
+        if(!this.tosearch){
+        axios.get(store.apiUrl + 'projects')
+          .then(results => {
+            store.projects = results.data.data;
+            store.projects = results.data.data;
+            store.paginator.links = results.data.links;
+            store.paginator.firstPage = results.data.first_page_url;
+            store.paginator.lastPageUrl = results.data.last_page_url;
+            store.paginator.lastPage = results.data.last_page;
+            store.paginator.currentPage = results.data.current_page;
+        })
+        }
         axios.get(store.apiUrl + 'research/' + this.tosearch)
         .then(results => {
           store.projects = results.data.data;
@@ -22,6 +34,7 @@
           store.paginator.lastPageUrl = results.data.last_page_url;
           store.paginator.lastPage = results.data.last_page;
           store.paginator.currentPage = results.data.current_page;
+          this.tosearch = '';
         })
       }
     }
