@@ -9,7 +9,13 @@
         store,
         name:'',
         email:'',
-        message:''
+        message:'',
+        success:false,
+        errors:{
+          name:[],
+          email:[],
+          message:[]
+        }
      }
 
     },
@@ -25,6 +31,11 @@
         axios.post(store.apiUrl + 'send-email',data)
           .then(response => {
             console.log(response.data);
+            this.success = response.data.success;
+            this.errors = response.data.errors
+          })
+          .catch(error => {
+            console.log(error);
           })
       }
     }
@@ -33,26 +44,40 @@
 
 
 <template>
- <form @submit.prevent="sendForm()">
+ <form v-if="!success" @submit.prevent="sendForm()">
     <div>
       <label for="name" ><strong>Name</strong> </label>
       <input v-model="name" type="text" id="name" name="name" >
+      <p class="error-msg" v-for="(error,index) in errors.name" :key="index.error">{{ error }}</p>
     </div>
     <div>
       <label for="email" ><strong>Email</strong> </label>
       <input v-model="email" type="text" id="email" name="email" >
+      <p class="error-msg" v-for="(error,index) in errors.email" :key="index.error">{{ error }}</p>
     </div>
     <div>
       <label for="message" ><strong>Message</strong> </label>
       <textarea v-model="message" id="message" name="message" ></textarea>
+      <p class="error-msg" v-for="(error,index) in errors.message" :key="index.error">{{ error }}</p>
     </div>
     
     <button type="submit">Submit</button>
   </form>
+  <div class="sended" v-else>
+    <h1>Email sended correctly!</h1> 
+  </div>
+
 </template>
 
 
 <style lang="scss" scoped>
+
+  .sended {
+    margin-top:40px ;
+    h1 {
+      color: green;
+    }
+  }
 
   form{
     min-width: 500px;
@@ -82,6 +107,11 @@
         scale: 1.1;
         cursor: pointer;
       }
+    }
+    .error-msg {
+      color: red;
+      margin: 10px 0;
+      font-weight: 700;
     }
   }
 
