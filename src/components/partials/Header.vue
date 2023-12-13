@@ -14,8 +14,8 @@
     methods:{
       getApi(){
         axios.get(store.apiUrl + 'research/' + this.tosearch)
-        .then(response => {
-          console.log(response.data);
+        .then(results => {
+          store.projects = results.data.data;
         })
       }
     }
