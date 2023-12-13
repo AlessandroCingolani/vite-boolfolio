@@ -72,7 +72,7 @@ export default {
       <ProjectsContainer />
       <Paginator :paginator="paginator" @callApi="getApi" />
     </div>
-    <aside>
+    <aside v-if="isLoading">
       <div class="sm-card">
         <h3>Techs</h3>
         <ul>
