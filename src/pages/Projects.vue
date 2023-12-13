@@ -17,13 +17,6 @@ export default {
     return {
       store,
       isLoading: false,
-      paginator:{
-        links:[],
-        firstPage:'',
-        lastPageUrl:'',
-        lastPage:'',
-        currentPage:''
-      }
     }
   },
   methods: {
@@ -45,11 +38,11 @@ export default {
             default:
               this.isLoading = true;
               store.projects = results.data.data;
-              this.paginator.links = results.data.links;
-              this.paginator.firstPage = results.data.first_page_url;
-              this.paginator.lastPageUrl = results.data.last_page_url;
-              this.paginator.lastPage = results.data.last_page;
-              this.paginator.currentPage = results.data.current_page;
+              store.paginator.links = results.data.links;
+              store.paginator.firstPage = results.data.first_page_url;
+              store.paginator.lastPageUrl = results.data.last_page_url;
+              store.paginator.lastPage = results.data.last_page;
+              store.paginator.currentPage = results.data.current_page;
           }
         })
       .catch(error => {
@@ -70,7 +63,7 @@ export default {
     <Loader v-if="!isLoading" />
     <div v-else  class="projects-container">
       <ProjectsContainer />
-      <Paginator :paginator="paginator" @callApi="getApi" />
+      <Paginator :paginator="store.paginator" @callApi="getApi" />
     </div>
     <aside v-if="isLoading">
       <div class="sm-card">
