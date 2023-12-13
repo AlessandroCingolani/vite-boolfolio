@@ -7,7 +7,7 @@ export default {
 
 <template>
   <div class="loader">
-    <h1>Projects Loading..</h1>
+    <h1>Loading....</h1>
     <div class="lds-hourglass"></div>
 
   </div>
