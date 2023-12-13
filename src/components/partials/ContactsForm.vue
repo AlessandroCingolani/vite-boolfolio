@@ -1,8 +1,12 @@
   <script>
+  import axios from "axios";
+  import {store} from '../../data/store';
+
   export default {
     name:'ContactsForm',
     data() {
       return{
+        store,
         name:'',
         email:'',
         message:''
@@ -11,12 +15,17 @@
     },
     methods: {
       sendForm(){
+        console.log('Sending');
         const data = {
           name:this.name,
           email:this.email,
           message:this.message,
         }
         console.log(data);
+        axios.post(store.apiUrl + 'send-email',data)
+          .then(response => {
+            console.log(response.data);
+          })
       }
     }
   }
