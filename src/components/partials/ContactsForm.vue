@@ -26,7 +26,7 @@
     },
     methods: {
       sendForm(){
-        this.isLoading = false;
+        this.isLoading = true;
         const data = {
           name:this.name,
           email:this.email,
@@ -36,9 +36,13 @@
         console.log(data);
         axios.post(store.apiUrl + 'send-email',data)
           .then(response => {
+            this.isLoading = false;
             console.log(response.data);
             this.success = response.data.success;
-            this.errors = response.data.errors
+            if(!this.success){
+              this.errors = response.data.errors
+
+            }
           })
           .catch(error => {
             console.log(error);
@@ -51,6 +55,7 @@
 
 <template>
  <form v-if="!success" @submit.prevent="sendForm()">
+  <div v-if="!isLoading">
     <div>
       <label for="name" ><strong>Name</strong> </label>
       <input v-model="name" type="text" id="name" name="name" >
@@ -66,12 +71,13 @@
       <textarea v-model="message" id="message" name="message" ></textarea>
       <p class="error-msg" v-for="(error,index) in errors.message" :key="index.error">{{ error }}</p>
     </div>
-    
     <button type="submit">Submit</button>
+  </div>
+
+    <Loader v-else/>
   </form>
   <div class="sended" v-else>
-    <Loader v-if="isLoading"/>
-    <h1 v-else>Email sended correctly!</h1> 
+    <h1 >Email sended correctly!</h1> 
   </div>
 
 </template>
